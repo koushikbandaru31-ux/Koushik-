@@ -1,0 +1,3 @@
+# Optional -- only needed to run deploy_to_watson_ml.py
+# (not required for the main Flask app, which runs fine without this)
+ibm-watsonx-ai
