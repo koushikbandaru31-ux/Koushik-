@@ -1,0 +1,21 @@
+{
+  "best_model_name": "XGBoost",
+  "results": {
+    "Logistic Regression": {
+      "accuracy": 0.7866666666666666,
+      "roc_auc": 0.7603585728585729
+    },
+    "Decision Tree": {
+      "accuracy": 0.7816666666666666,
+      "roc_auc": 0.710996710996711
+    },
+    "Random Forest": {
+      "accuracy": 0.8066666666666666,
+      "roc_auc": 0.7631292006292006
+    },
+    "XGBoost": {
+      "accuracy": 0.7975,
+      "roc_auc": 0.7634003050669718
+    }
+  }
+}
