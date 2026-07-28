@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Create Account — Credit Card Approval Prediction{% endblock %}
+{% block content %}
+
+<h1>Create an account</h1>
+<p style="color: var(--muted); max-width: 480px;">
+  Creating an account lets you save your applications and view your prediction history.
+  You can also use "Check eligibility" without an account — it just won't be saved.
+</p>
+
+{% if error %}
+<div class="alert">{{ error }}</div>
+{% endif %}
+
+<form method="POST" class="card form" style="max-width: 420px;">
+  <label>
+    Full name
+    <input type="text" name="name" required>
+  </label>
+  <label>
+    Email
+    <input type="email" name="email" required>
+  </label>
+  <label>
+    Password (min 6 characters)
+    <input type="password" name="password" minlength="6" required>
+  </label>
+  <button type="submit" class="btn">Create account</button>
+</form>
+
+<p style="color: var(--muted); margin-top: 14px;">
+  Already have an account? <a href="{{ url_for('login') }}">Sign in</a>
+</p>
+
+{% endblock %}

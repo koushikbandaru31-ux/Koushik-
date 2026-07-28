@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Prediction History — Credit Card Approval Prediction{% endblock %}
+{% block content %}
+
+<h1>Your prediction history</h1>
+
+{% if not records %}
+<div class="card">
+  <p class="placeholder">No predictions yet. <a href="{{ url_for('predict') }}">Check your eligibility</a> to see it show up here.</p>
+</div>
+{% else %}
+  {% for r in records %}
+  <div class="card result {{ 'state-approved' if r.result == 'Approved' else 'state-rejected' }}" style="text-align: left; margin-top: 16px;">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <h2 class="{{ 'ok' if r.result == 'Approved' else 'bad' }}" style="margin: 0;">{{ r.result }}</h2>
+      <span style="color: var(--muted); font-size: 0.8rem;">{{ r.date }}</span>
+    </div>
+    <div class="bar"><div class="bar-fill" style="width: {{ r.risk_score }}%;"></div></div>
+    <p class="bar-label">Risk score: {{ r.risk_score }}% &middot; Model: {{ r.model_name or "N/A" }}</p>
+    <p style="font-size: 0.85rem; color: var(--muted);">
+      Age {{ r.age|int }} &middot; {{ r.gender }} &middot; ₹{{ "{:,.0f}".format(r.income) }}/yr &middot;
+      CIBIL {{ r.credit_score|int }} &middot; {{ r.employment_status }}
+    </p>
+    <ul class="reasons">
+      {% for reason in r.reasons %}
+      <li>{{ reason }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endfor %}
+{% endif %}
+
+{% endblock %}
